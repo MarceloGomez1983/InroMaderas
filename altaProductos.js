@@ -1,0 +1,148 @@
+// Creo el constructor de la clase Productos
+class Producto {
+  constructor(codigo, item, precio, uMVta, precio2, uMVta2, mL, altoPul, anchoPul, largoPie, p2, altoMt, anchoMt, largoMt, m2, provNombre, 
+    provCodigo, cantPorPack, costoFecha, costoFechaDias, costoLista, costoNeto, costoUM, fletePorc, fleteValor, descargaPorc, descargaValor, 
+    costoFinalSinIva, costoPorUmVta, comisVtaValor, precio1SinIva, markeUpValor, markeUpPorc, observ){
+
+    this.codigo = codigo.toUpperCase();
+    this.item = item.toUpperCase();
+    this.precio = parseFloat(precio);
+    this.uMVta = uMVta.toUpperCase();
+    this.precio2 = parseFloat(precio2);
+    this.uMVta2 = uMVta2.toUpperCase();
+    this.mL = parseFloat(mL);
+    this.altoPul = parseFloat(altoPul);
+    this.anchoPul = parseFloat(anchoPul);
+    this.largoPie = parseFloat(largoPie);
+    this.p2 = parseFloat(p2);
+    this.altoMt = parseFloat(altoMt);
+    this.anchoMt = parseFloat(anchoMt);
+    this.largoMt = parseFloat(largoMt);
+    this.m2 = parseFloat(m2);
+    this.provNombre = provNombre.toUpperCase();
+    this.provCodigo = provCodigo.toUpperCase();
+    this.cantPorPack = parseInt(cantPorPack);
+    this.costoFecha = costoFecha;
+    this.costoFechaDias = parseInt(costoFechaDias);
+    this.costoLista = parseFloat(costoLista);
+    this.costoNeto = parseFloat(costoNeto);
+    this.costoUM = costoUM.toUpperCase();
+    this.fletePorc = parseFloat(fletePorc);
+    this.fleteValor = parseFloat(fleteValor);
+    this.descargaPorc = parseFloat(descargaPorc);
+    this.descargaValor = parseFloat(descargaValor);
+    this.costoFinalSinIva = parseFloat(costoFinalSinIva);
+    this.costoPorUmVta = parseFloat(costoPorUmVta);
+    this.comisVtaValor = parseFloat(comisVtaValor);
+    this.precio1SinIva = parseFloat(precio1SinIva);
+    this.markeUpValor = parseFloat(markeUpValor);
+    this.markeUpPorc = parseFloat(markeUpPorc);
+    this.observ = observ.toUpperCase();
+  }
+}
+
+document.addEventListener('click', (e) => {
+  if(e.target.matches('.enviar')){
+    altaProducto()
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if(e.target.matches('.mostrarProductos')){
+    productosActivos()
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if(e.target.matches('.cancelar')){
+      //codear
+  }
+});
+
+
+
+
+// Creo Array vacío para guardar información requerida al usuario
+let productos = [];
+
+// Creo función para dar de alta nuevos productos
+function altaProducto() {
+  let codigo = document.getElementById("codigo").value;
+  let item = document.getElementById("item").value;
+  let precio = document.getElementById("precio").value;
+  let uMVta = document.getElementById("uMVta").value;
+  let precio2 = document.getElementById("precio2").value;
+  let uMVta2 = document.getElementById("uMVta2").value;
+  let mL = document.getElementById("mL").value;
+  let altoPul = document.getElementById("altoPul").value;
+  let anchoPul = document.getElementById("anchoPul").value;
+  let largoPie = document.getElementById("largoPie").value;
+  let p2 = document.getElementById("p2").value;
+  let altoMt = document.getElementById("altoMt").value;
+  let anchoMt = document.getElementById("anchoMt").value;
+  let largoMt = document.getElementById("largoMt").value;
+  let m2 = document.getElementById("m2").value;
+  let provNombre = document.getElementById("provNombre").value;
+  let provCodigo = document.getElementById("provCodigo").value;
+  let cantPorPack = document.getElementById("cantPorPack").value;
+  let costoFecha = document.getElementById("costoFecha").value;
+  let costoFechaDias = document.getElementById("costoFechaDias").value;
+  let costoLista = document.getElementById("costoLista").value;
+  let costoNeto = document.getElementById("costoNeto").value;
+  let costoUM = document.getElementById("costoUM").value;
+  let fletePorc = document.getElementById("fletePorc").value;
+  let fleteValor = document.getElementById("fleteValor").value;
+  let descargaPorc = document.getElementById("descargaPorc").value;
+  let descargaValor = document.getElementById("descargaValor").value;
+  let costoFinalSinIva = document.getElementById("costoFinalSinIva").value;
+  let costoPorUmVta = document.getElementById("costoPorUmVta").value;
+  let comisVtaValor = document.getElementById("comisVtaValor").value;
+  let precio1SinIva = document.getElementById("precio1SinIva").value;
+  let markeUpValor = document.getElementById("markeUpValor").value;
+  let markeUpPorc = document.getElementById("markeUpPorc").value;
+  let observ = document.getElementById("observ").value;
+
+  // Creo un nuevo producto vacío y lo guardo en una variable
+  let x = new Producto(codigo, item, precio, uMVta, precio2, uMVta2, mL, altoPul, anchoPul, largoPie, p2, altoMt, anchoMt, largoMt, m2, provNombre, 
+    provCodigo, cantPorPack, costoFecha, costoFechaDias, costoLista, costoNeto, costoUM, fletePorc, fleteValor, descargaPorc, descargaValor, 
+    costoFinalSinIva, costoPorUmVta, comisVtaValor, precio1SinIva, markeUpValor, markeUpPorc, observ)
+    
+  // Pusheo los datos ingresados en el Array 'productos'
+  // productos.push(x);
+    
+    
+  
+  const productosActivos = document.querySelector('.productosActivos');
+  const div = document.createElement('div');
+  div.className = x.codigo;
+  
+  Object.values(x).forEach(el => {
+    const h3 = document.createElement('h3');
+    h3.className = "?";
+    h3.innerText = el;
+    div.append(h3);
+  });
+  
+  productosActivos.append(div);
+  console.log(productosActivos);
+  
+  
+  alert(x.codigo + " guardado");
+}
+
+
+
+
+// Salida de información
+function productosActivos() {
+  productos.forEach((element) => {
+    console.log(element.codigo + ", " + element.item + ", " + element.precio + ", " + element.uMVta + ", " + element.precio2 + ", " +
+    element.uMVta2 + ", " + element.mL + ", " + element.altoPul + ", " + element.anchoPul + ", " + element.largoPie + ", " + 
+    element.p2 + ", " + element.altoMt + ", " + element.anchoMt + ", " + element.largoMt + ", " + element.m2 + ", " + 
+    element.provNombre + ", " + element.provCodigo + ", " + element.cantPorPack + ", " + element.costoFecha + ", " + 
+    element.costoFechaDias + ", " + element.costoLista + ", " + element.costoNeto + ", " + element.costoUM + ", " + 
+    element.fletePorc + ", " + element.fleteValor + ", " + element.descargaPorc + ", " + element.descargaValor + ", " + 
+    element.costoFinalSinIva + ", " + element.costoPorUmVta + ", " + element.comisVtaValor + ", " + element.precio1SinIva + ", " +
+    element.markeUpValor + ", " + element.markeUpPorc + ", " + element.observ);
+  });
+}
