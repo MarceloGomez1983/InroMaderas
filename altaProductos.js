@@ -41,6 +41,8 @@ class Producto {
   }
 }
 
+// Obtengo eventos desde botones y les asigno funciones
+
 document.addEventListener('click', (e) => {
   if(e.target.matches('.enviar')){
     altaProducto()
@@ -108,25 +110,28 @@ function altaProducto() {
     costoFinalSinIva, costoPorUmVta, comisVtaValor, precio1SinIva, markeUpValor, markeUpPorc, observ)
     
   // Pusheo los datos ingresados en el Array 'productos'
-  // productos.push(x);
+  productos.push(x);
     
     
-  
+  // Obtengo html donde quiero mostrar los datos
   const productosActivos = document.querySelector('.productosActivos');
   const div = document.createElement('div');
-  div.className = x.codigo;
+  div.className = "prodCard";
   
+  // Recorro el Array y vreo los h3 para mostrar informacion al usuario
   Object.values(x).forEach(el => {
     const h3 = document.createElement('h3');
-    h3.className = "?";
     h3.innerText = el;
     div.append(h3);
   });
-  
+
+  // Agrego lo creado al objeto del elemento vigente
   productosActivos.append(div);
+
+  // Muestro productos por consola
   console.log(productosActivos);
   
-  
+  // Alerta confirmando al usuario el hecho
   alert(x.codigo + " guardado");
 }
 

@@ -19,8 +19,3 @@ prod.forEach((prod, iProd) => {
   // Agrego la oopcion al select
   selectProducto.append(option);
 });
-
-// console.log(selectProducto);
-
-// let divs = document.querySelectorAll("div")
-// console.log(divs);
