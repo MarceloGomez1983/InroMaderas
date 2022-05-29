@@ -28,10 +28,6 @@ $estilos: (
   margin: 0;
 }
 
-main {
-  margin: 15px;
-}
-
 @mixin titulo() {
   color: $colorSecundario;
   font-size: 25px;
@@ -42,8 +38,8 @@ h1 {
 }
 
 main {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  // height: 500px;
+  // margin: 100px;
 }
 
 a,
@@ -73,4 +69,8 @@ section {
 
 .formImput {
   width: 50px;
+}
+
+li{
+  font-size: 11px;
 }

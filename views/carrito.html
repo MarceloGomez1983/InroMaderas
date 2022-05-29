@@ -10,13 +10,14 @@
 
     <title>INRO maderas - Carrito</title>
     <meta name="keywords"
-        content="madera eucalipt machimbre deck melamina mueble carpinter mdf trupan egger sadepan faplac raiz tabla asado productos>
+        content="madera eucalipt machimbre deck melamina mueble carpinter mdf trupan egger sadepan faplac raiz tabla asado productos">
     <meta name="description" content="Encontrá los productos que necesitas para tu proyecto">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/estilo.css">
+    <link rel="stylesheet" href="../scss/style.css">
 </head>
+
 
 <body>
     <header class="container-fluid sticky-top bg-light border-bottom border-dark">
@@ -79,13 +80,35 @@
     </header>
 
 
-    <main class="container-fluid">
-        <div class="row text-center">
-            <div class="col-12 col-md-12 col-lg-12 col-xl-12 p-1 m-3" style="width: 18rem; height: 350px;">
-                <h1>Carrito - Sitio en desarrollo</h1>
-            </div>
+    <div class="container col-12 text-center">
+
+        Filtrar por Item:
+        <input class="col-5 mb-3 mt-4" type="text" name="" id="input-buscar">
+
+        <div class="row">
+
+            <!-- Elementos generados a partir del JSON -->
+            <main id="items" class="col-7 col-lg-7 col-md-7 col-xl-7 row mt-2 mb-4">
+            </main>
+            
+
+
+            <!-- Carrito -->
+            <aside class="col-5 col-lg-5 col-md-5 col-xl-5 mt-4 mb-4">
+
+                <h2 class="text-center">Carrito</h2>
+
+                <!-- Elementos del carrito -->
+                <ul id="carrito" class="list-group text-right"></ul>
+                <hr>
+
+                <!-- Precio total -->
+                <h2 class="text-center">Total: $ <span id="total"></span></h2>
+                <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
+                
+            </aside>
         </div>
-    </main>
+    </div>
 
 
     <footer class="container-fluid bg-light border-top border-dark">
@@ -125,15 +148,6 @@
     </footer>
 
 
-
-    <!-- SCRIPT WOW -->
-    <!-- <script src="js/wow.min.js"></script>
-    <script>new WOW().init();</script> -->
-
-    <!-- SCRIPT AOS -->
-    <!-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script> -->
-
     <!-- SCRIPT BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -144,7 +158,7 @@
         crossorigin="anonymous"></script>
 
     <!-- SCRIPT JAVASCRIPT -->
-    <!-- <script src="../index.js"></script> -->
+    <script src="./carrito.js"></script>
 
 </body>
 
