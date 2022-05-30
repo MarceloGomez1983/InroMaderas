@@ -104,7 +104,7 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// localStorage.clear();
+localStorage.clear();
 
 function altaProducto() {
   const codigo = document.getElementById("codigo").value;

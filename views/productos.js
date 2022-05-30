@@ -4,7 +4,7 @@ const DOMcontenedor = document.querySelector("#containerProducts");
 const obtenerProductos = async () => {
 
   // Recorro los poductos del JSON y los agrego a la lista de precios
-  const responseProducts = await fetch("/jsons/productos.json");
+  const responseProducts = await fetch("../jsons/productos.json");
   const products = await responseProducts.json();
 
   products.forEach((element) => {
