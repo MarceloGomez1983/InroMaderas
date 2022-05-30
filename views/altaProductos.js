@@ -1,3 +1,22 @@
+// Solicito password al usuario, acceso sólo a usuarios específicos
+(async () => {
+  const { value: password } = await Swal.fire({
+    title: "Ingrese password",
+    input: "password",
+    inputLabel: "Password",
+    inputPlaceholder: "Enter your password",
+    inputAttributes: {
+      maxlength: 10,
+      autocapitalize: "off",
+      autocorrect: "off",
+    },
+  });
+
+  if (password !== "inro2022") {
+    location.reload();
+  }
+})();
+
 class Producto {
   constructor(
     codigo,
@@ -85,6 +104,8 @@ document.addEventListener("click", (e) => {
   }
 });
 
+// localStorage.clear();
+
 function altaProducto() {
   const codigo = document.getElementById("codigo").value;
   const item = document.getElementById("item").value;
@@ -158,39 +179,52 @@ function altaProducto() {
     // observ
   );
 
-  // En verdad lo que quiero hacer aquí es agregar el producto nuevo a la lista de precios que tengo en la otra pagina, pero no he apreendido como hacerlo aun
-  console.log(nuevoProducto);
+  const productos = localStorage.getItem("productos");
+  let arrayProductos = [];
 
-  // Alerta
-  Swal.fire({
-    title: nuevoProducto.codigo + " " + nuevoProducto.item,
-    text: "El producto fue dado de alta",
-    icon: "success",
-    confirmButtonText: "ACEPTAR",
-    showCancelButton: true,
-    cancelButtonText: "CANCELAR",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      console.log("Se aceptó");
-    }
-    if (result.isDismissed) {
-      console.log("Se canceló");
-    }
+  if (productos !== null) {
+    arrayProductos = JSON.parse(productos);
+  }
+
+  let productoEncontrado = arrayProductos.find((productosEnJSON) => {
+    return productosEnJSON.codigo == nuevoProducto.codigo;
   });
 
-  // Notificacion
-  Toastify({
-    text: `Ya está disponible el artículo ${nuevoProducto.codigo} ${nuevoProducto.item} en la lista de precios`,
-    duration: 5000,
-    // destination: "https://github.com/apvarun/toastify-js",
-    newWindow: true,
-    close: false,
-    gravity: "top", // `top` or `bottom`
-    position: "right", // `left`, `center` or `right`
-    stopOnFocus: true, // Prevents dismissing of toast on hover
-    style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)",
-    },
-    onClick: function () {}, // Callback after click
-  }).showToast();
+  if (productoEncontrado) {
+    // Alerta
+    Swal.fire({
+      title: nuevoProducto.codigo + " " + productoEncontrado.item,
+      text: "El producto no puede darse de alta porque ya se encuentra en la lista de precios",
+      icon: "error",
+      confirmButtonText: "ACEPTAR",
+      showCancelButton: false,
+      cancelButtonText: "CANCELAR",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log("Se aceptó");
+      }
+      if (result.isDismissed) {
+        console.log("Se canceló");
+      }
+    });
+  } else {
+    arrayProductos.push(nuevoProducto);
+    localStorage.setItem("productos", JSON.stringify(arrayProductos));
+
+    // Notificacion
+    Toastify({
+      text: `Ya está disponible el artículo ${nuevoProducto.codigo} ${nuevoProducto.item} en la lista de precios`,
+      duration: 5000,
+      // destination: "https://github.com/apvarun/toastify-js",
+      newWindow: true,
+      close: false,
+      gravity: "top", // `top` or `bottom`
+      position: "right", // `left`, `center` or `right`
+      stopOnFocus: true, // Prevents dismissing of toast on hover
+      style: {
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
+      },
+      onClick: function () {}, // Callback after click
+    }).showToast();
+  }
 }
