@@ -210,6 +210,8 @@ const baseDeDatos = [
   },
 ];
 
+
+
 let carrito = [];
 const divisa = "$";
 const DOMitems = document.querySelector("#items");
